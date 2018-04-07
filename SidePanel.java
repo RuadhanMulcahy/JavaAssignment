@@ -28,19 +28,30 @@ public class SidePanel extends JPanel {
 		JLabel blank5 = new JLabel("");
 		
 		JPanel sidePanel = new JPanel();
-		sidePanel.setPreferredSize(new Dimension(100,800));
+		
+		sidePanel.setPreferredSize(new Dimension(100,200));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 		
+		dropDown1.setPreferredSize(new Dimension(100,20));
 		dropDown1.setMaximumSize(new Dimension(100,20));
+		dropDown2.setPreferredSize(new Dimension(100,20));
 		dropDown2.setMaximumSize(new Dimension(100,20));
+		dropDown3.setPreferredSize(new Dimension(100,20));
 		dropDown3.setMaximumSize(new Dimension(100,20));
+		dropDown4.setPreferredSize(new Dimension(100,20));
 		dropDown4.setMaximumSize(new Dimension(100,20));
+		dropDown5.setPreferredSize(new Dimension(100,20));
 		dropDown5.setMaximumSize(new Dimension(100,20));
 		
+		blank1.setPreferredSize(new Dimension(100,20));
 		blank1.setMaximumSize(new Dimension(100,20));
+		blank2.setPreferredSize(new Dimension(100,20));
 		blank2.setMaximumSize(new Dimension(100,20));
+		blank3.setPreferredSize(new Dimension(100,20));
 		blank3.setMaximumSize(new Dimension(100,20));
+		blank4.setPreferredSize(new Dimension(100,20));
 		blank4.setMaximumSize(new Dimension(100,20));
+		blank5.setPreferredSize(new Dimension(100,20));
 		blank5.setMaximumSize(new Dimension(100,20));
 		
 		sidePanel.add(blank1);

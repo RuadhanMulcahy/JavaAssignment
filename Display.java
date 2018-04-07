@@ -12,6 +12,8 @@ public class Display {
 	
 	public Display() {
 		
+		window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		
 		Graph demo = new Graph("chart" );  
 	    demo.setSize(400, 300 );    
 
@@ -19,18 +21,15 @@ public class Display {
 		ToolBar ToolBar = new ToolBar();
 		JPanel container = new JPanel();
 		
-		container.setLayout(new GridLayout(1,2,0,300));
+		container.setLayout(new GridLayout(1,1));
 		
-		container.add(panel.sideMenu(), BorderLayout.EAST);
-		container.add(demo.createDemoPanel(), BorderLayout.WEST);
+		window.add(panel.sideMenu(), BorderLayout.WEST);
+		container.add(demo.createDemoPanel());
 		
-		
-		window.setSize(1000, 800);
+		window.setSize(800, 600);
 		window.setResizable(false);
 		window.add(ToolBar.topToolBar(), BorderLayout.NORTH);
-		window.add(container, BorderLayout.CENTER);
+		window.add(container, BorderLayout.EAST);
 		window.setVisible(true);
-		
-
 	}
 }
