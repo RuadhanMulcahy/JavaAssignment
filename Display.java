@@ -12,19 +12,14 @@ public class Display {
 	
 	public Display() {
 		
-		window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		
-		Graph demo = new Graph("chart" );  
-	    demo.setSize(400, 300 );    
-
-		SidePanel panel = new SidePanel();
-		ToolBar ToolBar = new ToolBar();
+		window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  
 		JPanel container = new JPanel();
+		SidePanel panel = new SidePanel(container, window);
+		ToolBar ToolBar = new ToolBar();;
 		
 		container.setLayout(new GridLayout(1,1));
 		
 		window.add(panel.sideMenu(), BorderLayout.WEST);
-		container.add(demo.createDemoPanel());
 		
 		window.setSize(800, 600);
 		window.setResizable(false);
