@@ -21,7 +21,7 @@ public class Display {
 		
 		window.add(panel.sideMenu(), BorderLayout.WEST);
 		
-		window.setSize(800, 600);
+		window.setSize(830, 600);
 		window.setResizable(false);
 		window.add(ToolBar.topToolBar(), BorderLayout.NORTH);
 		window.add(container, BorderLayout.EAST);

@@ -1,5 +1,6 @@
 package assignment1;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -23,20 +24,20 @@ public class SidePanel  implements ActionListener {
 	JComboBox dropDown5 = new JComboBox();
 	JComboBox dropDown6 = new JComboBox(type);
 	
-	JLabel blank1 = new JLabel("");
-	JLabel blank2 = new JLabel("");
-	JLabel blank3 = new JLabel("");
-	JLabel blank4 = new JLabel("");
-	JLabel blank5 = new JLabel("");
-	JLabel blank6 = new JLabel("");
-	JLabel blank7 = new JLabel("");
+	JComboBox dateTimeDD1 = new JComboBox(options);
+	JComboBox dateTimeMON1 = new JComboBox(options);
+	JComboBox dateTimeYY1 = new JComboBox(options);
+	
+	JComboBox dateTimeDD2 = new JComboBox(options);
+	JComboBox dateTimeMON2 = new JComboBox(options);
+	JComboBox dateTimeYY2 = new JComboBox(options);
 	
 	JButton button1 = new JButton("View");
 	
-	String selection = "";
-	
 	JPanel container = new JPanel();
 	JFrame window = new JFrame();
+	
+	String selection = "";
 	
 	String val1 = "Description";
 	String val2 = "Fire CAR";
@@ -54,10 +55,28 @@ public class SidePanel  implements ActionListener {
 	
 	public JPanel sideMenu() {
 		
-		JPanel sidePanel = new JPanel();
+		JLabel blank1 = new JLabel("");
+		JLabel blank2 = new JLabel("");
+		JLabel blank3 = new JLabel("");
+		JLabel blank4 = new JLabel("");
+		JLabel blank5 = new JLabel("");
+		JLabel blank6 = new JLabel("");
+		JLabel blank7 = new JLabel("");
+		JLabel blank8 = new JLabel("");
+		JLabel blank9 = new JLabel("");
 		
-		sidePanel.setPreferredSize(new Dimension(100,200));
+		JPanel sidePanel = new JPanel();
+		JPanel container2 = new JPanel(); 
+		JPanel container3 = new JPanel();
+		
+		sidePanel.setPreferredSize(new Dimension(150,200));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
+		
+		container2.setMaximumSize(new Dimension(150, 20));
+		container2.setLayout(new BoxLayout(container2, BoxLayout.X_AXIS));
+		
+		container3.setMaximumSize(new Dimension(150, 20));
+		container3.setLayout(new BoxLayout(container3, BoxLayout.X_AXIS));
 		
 		dropDown1.setMaximumSize(new Dimension(100,20));
 		dropDown2.setMaximumSize(new Dimension(100,20));
@@ -66,6 +85,14 @@ public class SidePanel  implements ActionListener {
 		dropDown5.setMaximumSize(new Dimension(100,20));
 		dropDown6.setMaximumSize(new Dimension(100, 20));
 		
+		dateTimeDD1.setMaximumSize(new Dimension(40, 20));
+		dateTimeMON1.setMaximumSize(new Dimension(40, 20));
+		dateTimeYY1.setMaximumSize(new Dimension(40, 20));
+		
+		dateTimeDD2.setMaximumSize(new Dimension(40, 20));
+		dateTimeMON2.setMaximumSize(new Dimension(40, 20));
+		dateTimeYY2.setMaximumSize(new Dimension(40, 20));
+		
 		blank1.setMaximumSize(new Dimension(100,20));
 		blank2.setMaximumSize(new Dimension(100,20));
 		blank3.setMaximumSize(new Dimension(100,20));
@@ -73,11 +100,23 @@ public class SidePanel  implements ActionListener {
 		blank5.setMaximumSize(new Dimension(100,20));
 		blank6.setMaximumSize(new Dimension(100, 20));
 		blank7.setMaximumSize(new Dimension(100, 20));
+		blank8.setMaximumSize(new Dimension(7, 20));
+		blank9.setMaximumSize(new Dimension(7, 20));
 		
 		dropDown1.addActionListener(this);
 		dropDown2.addActionListener(this);
 		dropDown6.addActionListener(this);
 		button1.addActionListener(this);
+		
+		container2.add(blank8);
+		container2.add(dateTimeDD1);
+		container2.add(dateTimeMON1);
+		container2.add(dateTimeYY1);
+		
+		container3.add(blank9);
+		container3.add(dateTimeDD2);
+		container3.add(dateTimeMON2);
+		container3.add(dateTimeYY2);
 		
 		sidePanel.add(blank1);
 		sidePanel.add(dropDown1);
@@ -86,9 +125,9 @@ public class SidePanel  implements ActionListener {
 		sidePanel.add(blank3);
 		sidePanel.add(dropDown3);
 		sidePanel.add(blank4);
-		sidePanel.add(dropDown4);
+		sidePanel.add(container2);
 		sidePanel.add(blank5);
-		sidePanel.add(dropDown5);
+		sidePanel.add(container3);
 		sidePanel.add(blank6);
 		sidePanel.add(dropDown6);
 		sidePanel.add(blank7);
@@ -172,6 +211,10 @@ public class SidePanel  implements ActionListener {
 		conversion = list.toArray(conversion);
 		
 		box.setModel(new DefaultComboBoxModel(conversion));
+	}
+	
+	public void dateTimeFill() {
+		
 	}
 }
 
