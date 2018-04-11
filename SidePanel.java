@@ -29,6 +29,14 @@ public class SidePanel  implements ActionListener {
 	JPanel container = new JPanel();
 	JFrame window = new JFrame();
 	
+	String val1 = "Description";
+	String val2 = "Fire CAR";
+	String val3 = "DATES";
+	String val4 = "01-JAN-13";
+	String val5 = "13-JAN-13";
+	
+	DataHandler data = new DataHandler(val1, val2, val3, val4, val5);
+	
 	public SidePanel(JPanel container, JFrame window) {
 		
 		this.container = container;
@@ -78,13 +86,15 @@ public class SidePanel  implements ActionListener {
 		sidePanel.add(blank5);
 		sidePanel.add(dropDown5);
 		
+		data.mainDriver();
+		
 		return sidePanel;
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent dropDown) {
 		
 		
-		if(e.getSource() == dropDown1) {
+		if(dropDown.getSource() == dropDown1) {
 			
 			String check = (String) dropDown1.getSelectedItem();
 		
@@ -104,7 +114,7 @@ public class SidePanel  implements ActionListener {
 					break;
 			}
 		}
-		else if(e.getSource() == dropDown5) {
+		else if(dropDown.getSource() == dropDown5) {
 			
 			String check2 = (String) dropDown5.getSelectedItem();
 			
