@@ -14,7 +14,9 @@ public class SidePanel  implements ActionListener {
 	
 	String[] options = {"", "1", "2", "3", "4", "5"};
 	String[] columnNames1 = {"","Station Area", "Description"};
-	String[] columnNames2 = {"Dates", "TOC", "ORD", "MOB", "IA", "MAV", "CD"};   
+	String[] columnNames2 = {"Dates", "TOC", "ORD", "MOB", "IA", "MAV", "CD"};
+	String[] months = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+
 	String[] type = {"", "Pie Chart", "Graph"};
 	
 	JComboBox dropDown1 = new JComboBox(columnNames1);
@@ -24,9 +26,9 @@ public class SidePanel  implements ActionListener {
 	JComboBox dropDown5 = new JComboBox();
 	JComboBox dropDown6 = new JComboBox(type);
 	
-	JComboBox dateTimeDD1 = new JComboBox(options);
-	JComboBox dateTimeMON1 = new JComboBox(options);
-	JComboBox dateTimeYY1 = new JComboBox(options);
+	JComboBox dateTimeTTDD1 = new JComboBox(options);
+	JComboBox dateTimeTTMON1 = new JComboBox(options);
+	JComboBox dateTimeTTYY1 = new JComboBox(options);
 	
 	JComboBox dateTimeDD2 = new JComboBox(options);
 	JComboBox dateTimeMON2 = new JComboBox(options);
@@ -85,9 +87,9 @@ public class SidePanel  implements ActionListener {
 		dropDown5.setMaximumSize(new Dimension(100,20));
 		dropDown6.setMaximumSize(new Dimension(100, 20));
 		
-		dateTimeDD1.setMaximumSize(new Dimension(40, 20));
-		dateTimeMON1.setMaximumSize(new Dimension(40, 20));
-		dateTimeYY1.setMaximumSize(new Dimension(40, 20));
+		dateTimeTTDD1.setMaximumSize(new Dimension(40, 20));
+		dateTimeTTMON1.setMaximumSize(new Dimension(40, 20));
+		dateTimeTTYY1.setMaximumSize(new Dimension(40, 20));
 		
 		dateTimeDD2.setMaximumSize(new Dimension(40, 20));
 		dateTimeMON2.setMaximumSize(new Dimension(40, 20));
@@ -109,9 +111,9 @@ public class SidePanel  implements ActionListener {
 		button1.addActionListener(this);
 		
 		container2.add(blank8);
-		container2.add(dateTimeDD1);
-		container2.add(dateTimeMON1);
-		container2.add(dateTimeYY1);
+		container2.add(dateTimeTTDD1);
+		container2.add(dateTimeTTMON1);
+		container2.add(dateTimeTTYY1);
 		
 		container3.add(blank9);
 		container3.add(dateTimeDD2);
@@ -142,7 +144,6 @@ public class SidePanel  implements ActionListener {
 		
 		if(actions.getSource() == dropDown1) {
 
-			
 			String check = (String) dropDown1.getSelectedItem();
 		
 			switch (check) {
@@ -161,13 +162,38 @@ public class SidePanel  implements ActionListener {
 		}
 		else if(actions.getSource() == dropDown3) {
 			
-		}
-		else if(actions.getSource() == dropDown4) {
+			String check = (String) dropDown3.getSelectedItem();
+			
+			if (check == "DATES") {
+					
+				this.dateTimeFill(check, dateTimeTTDD1, dateTimeTTMON1, dateTimeTTYY1);
+			}
+			else {
+				
+				
+			}
 			
 		}
-		else if(actions.getSource() == dropDown5) {
+		else if(actions.getSource() == dateTimeTTDD1) {
 			
 		}
+		else if(actions.getSource() == dateTimeTTMON1) {
+			
+			
+		}
+		else if(actions.getSource() == dateTimeTTYY1) {
+			
+		}
+		else if(actions.getSource() == dateTimeDD2) {
+			
+		}
+		else if(actions.getSource() == dateTimeMON2) {
+			
+		}
+		else if(actions.getSource() == dateTimeYY2) {
+			
+		}
+		
 		else if(actions.getSource() == dropDown6) {
 			
 			String check2 = (String) dropDown6.getSelectedItem();
@@ -213,8 +239,15 @@ public class SidePanel  implements ActionListener {
 		box.setModel(new DefaultComboBoxModel(conversion));
 	}
 	
-	public void dateTimeFill() {
+	public void dateTimeFill(String check, JComboBox box1, JComboBox box2, JComboBox box3) {
 		
+		int max = 0;
+		
+		if(check == "DATES") {
+			
+			
+			
+		}
 	}
 }
 
