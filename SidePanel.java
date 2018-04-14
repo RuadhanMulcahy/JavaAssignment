@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.*;
@@ -16,8 +17,10 @@ public class SidePanel  implements ActionListener {
 	String[] columnNames1 = {"","Station Area", "Description"};
 	String[] columnNames2 = {"Dates", "TOC", "ORD", "MOB", "IA", "MAV", "CD"};
 	String[] months = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-
 	String[] type = {"", "Pie Chart", "Graph"};
+	
+	List<String> dates = Arrays.asList("Dates");
+	List<String> times = Arrays.asList("TOC", "ORD", "MOB", "IA", "MAV", "CD");
 	
 	JComboBox dropDown1 = new JComboBox(columnNames1);
 	JComboBox dropDown2 = new JComboBox();
@@ -172,6 +175,12 @@ public class SidePanel  implements ActionListener {
 					
 				this.dateTimeFill(check, dateTimeTTDD1, dateTimeTTMON1, dateTimeTTYY1);
 				this.dateTimeFill(check, dateTimeTTDD2, dateTimeTTMON2, dateTimeTTYY2);
+				
+				dateTimeTTDD1.setSelectedItem(1);
+				dateTimeTTDD2.setSelectedItem(1);
+				
+				this.daySetterMonth(dateTimeTTDD1, dateTimeTTMON1);
+				this.daySetterMonth(dateTimeTTDD2, dateTimeTTMON1);
 				//dateTimeTTDD1.removeAllItems();
 				//dateTimeTTDD2.removeAllItems();
 			}
@@ -186,7 +195,13 @@ public class SidePanel  implements ActionListener {
 		}
 		else if(actions.getSource() == dateTimeTTMON1) {
 			
-			this.daySetterMonth(dateTimeTTDD1, dateTimeTTMON1);
+			String check = (String) dropDown3.getSelectedItem();
+			
+			if(check == "Dates") {
+			
+				dateTimeTTDD1.removeAllItems();
+				this.daySetterMonth(dateTimeTTDD1, dateTimeTTMON1);
+			}
 		}
 		else if(actions.getSource() == dateTimeTTYY1) {
 			
@@ -196,6 +211,7 @@ public class SidePanel  implements ActionListener {
 		}
 		else if(actions.getSource() == dateTimeTTMON2) {
 			
+			dateTimeTTDD2.removeAllItems();
 			this.daySetterMonth(dateTimeTTDD2, dateTimeTTMON2);
 		}
 		else if(actions.getSource() == dateTimeTTYY2) {
@@ -207,7 +223,7 @@ public class SidePanel  implements ActionListener {
 			String check = (String) dropDown6.getSelectedItem();
 			
 			switch (check) {
-				
+			
 				case "Pie Chart":
 					
 					selection = "Pie Chart";
@@ -231,7 +247,6 @@ public class SidePanel  implements ActionListener {
 			{
 				System.out.println("Histogram");
 			}
-			
 		}
 	}
 	
@@ -256,7 +271,25 @@ public class SidePanel  implements ActionListener {
 		int minuteMax = 60;
 		int secondMax = 60;
 		
-		if(check == "Dates") {
+		
+		List<String> dates = Arrays.asList("Dates");
+		List<String> times = Arrays.asList("TOC", "ORD", "MOB", "IA", "MAV", "CD");
+		
+		if(times.contains(check)) {
+			
+			for (int i = 1, x = 1,  y = 13; i <= dayMax; i++) {
+				
+				box1.addItem(new Integer(i));
+				box2.addItem(new Integer(i));
+				
+				if( y != yearMax + 1) {
+					
+					box3.addItem(new Integer(y));
+					y++;
+				}
+			}
+		}
+		else if (dates.contains(check)) {
 			
 			for (int i = 1, x = 1,  y = 13; i <= dayMax; i++) {
 				
@@ -267,7 +300,7 @@ public class SidePanel  implements ActionListener {
 					box2.addItem(new Integer(x));
 					x ++;
 				}
-				else if( y != yearMax + 1) {
+				else if( y != hourMax + 1) {
 					
 					box3.addItem(new Integer(y));
 					y++;
@@ -282,40 +315,50 @@ public class SidePanel  implements ActionListener {
 	
 		int dayMax1 = 31;
 		int dayMax2 = 30;
-		int dayMax3 = 29;
+		int dayMax3 = 28;
 		
-		box1.removeAllItems();
+		System.out.println(box1.getItemCount());
 		
 		//if (box1.getItemCount() == 0) {
 		
-			if (check == 1 || check == 3 ||  check == 5 || check == 7 || check == 8 || check == 10 || check == 12) {
+			if (check == 0 || check == 1 || check == 3 ||  check == 5 || check == 7 || check == 8 || check == 10 || check == 12) {
 				
 				box1.removeAllItems();
 				
-				for (int i = 1; i <= dayMax1; i++) {
-					
-					box1.addItem(new Integer(i));
+				if (box1.getItemCount() <= dayMax1) {
+				
+					for (int i = 1; i <= dayMax1; i++) {
+						
+						box1.addItem(new Integer(i));
+					}
 				}
 			}
 			else if (check == 4 || check == 6 ||  check == 9 || check == 11) {
 				
 				box1.removeAllItems();
 				
-				for (int i = 1; i <= dayMax2; i++) {
+				if (box1.getItemCount() <= dayMax2) {
 					
-					box1.addItem(new Integer(i));
+					for (int i = 1; i <= dayMax2; i++) {
+						
+						box1.addItem(new Integer(i));
+					}
 				}
 			}
 			else if (check == 2) {
 				
 				box1.removeAllItems();
 				
-				for (int i = 1; i <= dayMax3; i++) {
-					
-					box1.addItem(new Integer(i));
+				if(box1.getItemCount() <= dayMax3) {
+				
+					for (int i = 1; i <= dayMax3; i++) {
+						
+						box1.addItem(new Integer(i));
+					}
 				}
 			}
 		//}
-	}		
+	}
 }
+
 
