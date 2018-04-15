@@ -186,7 +186,14 @@ public class SidePanel  implements ActionListener {
 			}
 			else {
 				
+				dateTimeTTDD1.removeAllItems();
+				dateTimeTTMON1.removeAllItems();
+				dateTimeTTYY1.removeAllItems();
+				dateTimeTTDD2.removeAllItems();
+				dateTimeTTMON2.removeAllItems();
+				dateTimeTTYY2.removeAllItems();
 				this.dateTimeFill(check, dateTimeTTDD1, dateTimeTTMON1, dateTimeTTYY1);
+				this.dateTimeFill(check, dateTimeTTDD2, dateTimeTTMON2, dateTimeTTYY2);
 			}
 			
 		}
@@ -266,32 +273,18 @@ public class SidePanel  implements ActionListener {
 		
 		int dayMax = 31;
 		int monthMax = 12;
+		int yearStart = 13;
 		int yearMax = 15;
 		int hourMax = 12;
-		int minuteMax = 60;
-		int secondMax = 60;
+		int minuteSecondMax = 60;
 		
 		
 		List<String> dates = Arrays.asList("Dates");
 		List<String> times = Arrays.asList("TOC", "ORD", "MOB", "IA", "MAV", "CD");
 		
-		if(times.contains(check)) {
+		if(dates.contains(check)) {
 			
-			for (int i = 1, x = 1,  y = 13; i <= dayMax; i++) {
-				
-				box1.addItem(new Integer(i));
-				box2.addItem(new Integer(i));
-				
-				if( y != yearMax + 1) {
-					
-					box3.addItem(new Integer(y));
-					y++;
-				}
-			}
-		}
-		else if (dates.contains(check)) {
-			
-			for (int i = 1, x = 1,  y = 13; i <= dayMax; i++) {
+			for (int i = 1, x = 1,  y = yearStart; i <= dayMax; i++) {
 				
 				box1.addItem(new Integer(i));
 				
@@ -300,9 +293,23 @@ public class SidePanel  implements ActionListener {
 					box2.addItem(new Integer(x));
 					x ++;
 				}
-				else if( y != hourMax + 1) {
+				else if( y != yearMax + 1) {
 					
 					box3.addItem(new Integer(y));
+					y++;
+				}
+			}
+		}
+		else if (times.contains(check)) {
+			
+			for (int i = 0, x = 0,  y = 0; i <= minuteSecondMax; i++) {
+				
+				box2.addItem(new Integer(i));
+				box3.addItem(new Integer(i));
+				
+				if( y != hourMax + 1) {
+					
+					box1.addItem(new Integer(y));
 					y++;
 				}
 			}
@@ -319,45 +326,42 @@ public class SidePanel  implements ActionListener {
 		
 		System.out.println(box1.getItemCount());
 		
-		//if (box1.getItemCount() == 0) {
-		
-			if (check == 0 || check == 1 || check == 3 ||  check == 5 || check == 7 || check == 8 || check == 10 || check == 12) {
-				
-				box1.removeAllItems();
-				
-				if (box1.getItemCount() <= dayMax1) {
-				
-					for (int i = 1; i <= dayMax1; i++) {
-						
-						box1.addItem(new Integer(i));
-					}
-				}
-			}
-			else if (check == 4 || check == 6 ||  check == 9 || check == 11) {
-				
-				box1.removeAllItems();
-				
-				if (box1.getItemCount() <= dayMax2) {
+		if (check == 0 || check == 1 || check == 3 ||  check == 5 || check == 7 || check == 8 || check == 10 || check == 12) {
+			
+			box1.removeAllItems();
+			
+			if (box1.getItemCount() <= dayMax1) {
+			
+				for (int i = 1; i <= dayMax1; i++) {
 					
-					for (int i = 1; i <= dayMax2; i++) {
-						
-						box1.addItem(new Integer(i));
-					}
+					box1.addItem(new Integer(i));
 				}
 			}
-			else if (check == 2) {
+		}
+		else if (check == 4 || check == 6 ||  check == 9 || check == 11) {
+			
+			box1.removeAllItems();
+			
+			if (box1.getItemCount() <= dayMax2) {
 				
-				box1.removeAllItems();
-				
-				if(box1.getItemCount() <= dayMax3) {
-				
-					for (int i = 1; i <= dayMax3; i++) {
-						
-						box1.addItem(new Integer(i));
-					}
+				for (int i = 1; i <= dayMax2; i++) {
+					
+					box1.addItem(new Integer(i));
 				}
 			}
-		//}
+		}
+		else if (check == 2) {
+			
+			box1.removeAllItems();
+			
+			if(box1.getItemCount() <= dayMax3) {
+			
+				for (int i = 1; i <= dayMax3; i++) {
+					
+					box1.addItem(new Integer(i));
+				}
+			}
+		}
 	}
 }
 
