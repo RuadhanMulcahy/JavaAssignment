@@ -22,6 +22,8 @@ public class SidePanel  implements ActionListener {
 	List<String> dates = Arrays.asList("Dates");
 	List<String> times = Arrays.asList("TOC", "ORD", "MOB", "IA", "MAV", "CD");
 	
+	DateTime fill = new DateTime();
+	
 	JComboBox dropDown1 = new JComboBox(columnNames1);
 	JComboBox dropDown2 = new JComboBox();
 	JComboBox dropDown3 = new JComboBox();
@@ -172,17 +174,22 @@ public class SidePanel  implements ActionListener {
 			String check = (String) dropDown3.getSelectedItem();
 			
 			if (check == "Dates") {
-					
-				this.dateTimeFill(check, dateTimeTTDD1, dateTimeTTMON1, dateTimeTTYY1);
-				this.dateTimeFill(check, dateTimeTTDD2, dateTimeTTMON2, dateTimeTTYY2);
 				
-				dateTimeTTDD1.setSelectedItem(1);
-				dateTimeTTDD2.setSelectedItem(1);
+				dateTimeTTDD1.removeAllItems();
+				dateTimeTTMON1.removeAllItems();
+				dateTimeTTYY1.removeAllItems();
+				dateTimeTTDD2.removeAllItems();
+				dateTimeTTMON2.removeAllItems();
+				dateTimeTTYY2.removeAllItems();
 				
-				this.daySetterMonth(dateTimeTTDD1, dateTimeTTMON1);
-				this.daySetterMonth(dateTimeTTDD2, dateTimeTTMON1);
-				//dateTimeTTDD1.removeAllItems();
-				//dateTimeTTDD2.removeAllItems();
+				fill.dateTimeFill(check, dateTimeTTDD1, dateTimeTTMON1, dateTimeTTYY1);
+				fill.dateTimeFill(check, dateTimeTTDD2, dateTimeTTMON2, dateTimeTTYY2);
+				
+				dateTimeTTMON1.setSelectedItem(1);
+				dateTimeTTMON2.setSelectedItem(1);
+				
+				fill.daySetterMonth(dateTimeTTDD1, dateTimeTTMON1);
+				fill.daySetterMonth(dateTimeTTDD2, dateTimeTTMON2);
 			}
 			else {
 				
@@ -192,8 +199,9 @@ public class SidePanel  implements ActionListener {
 				dateTimeTTDD2.removeAllItems();
 				dateTimeTTMON2.removeAllItems();
 				dateTimeTTYY2.removeAllItems();
-				this.dateTimeFill(check, dateTimeTTDD1, dateTimeTTMON1, dateTimeTTYY1);
-				this.dateTimeFill(check, dateTimeTTDD2, dateTimeTTMON2, dateTimeTTYY2);
+				
+				fill.dateTimeFill(check, dateTimeTTDD1, dateTimeTTMON1, dateTimeTTYY1);
+				fill.dateTimeFill(check, dateTimeTTDD2, dateTimeTTMON2, dateTimeTTYY2); 
 			}
 			
 		}
@@ -207,7 +215,7 @@ public class SidePanel  implements ActionListener {
 			if(check == "Dates") {
 			
 				dateTimeTTDD1.removeAllItems();
-				this.daySetterMonth(dateTimeTTDD1, dateTimeTTMON1);
+				fill.daySetterMonth(dateTimeTTDD1, dateTimeTTMON1);
 			}
 		}
 		else if(actions.getSource() == dateTimeTTYY1) {
@@ -218,8 +226,13 @@ public class SidePanel  implements ActionListener {
 		}
 		else if(actions.getSource() == dateTimeTTMON2) {
 			
-			dateTimeTTDD2.removeAllItems();
-			this.daySetterMonth(dateTimeTTDD2, dateTimeTTMON2);
+			String check = (String) dropDown3.getSelectedItem();
+			
+			if(check == "Dates") {
+				
+				dateTimeTTDD2.removeAllItems();
+				fill.daySetterMonth(dateTimeTTDD2, dateTimeTTMON2);
+			}
 		}
 		else if(actions.getSource() == dateTimeTTYY2) {
 			
@@ -267,101 +280,6 @@ public class SidePanel  implements ActionListener {
 		conversion = list.toArray(conversion);
 		
 		box.setModel(new DefaultComboBoxModel(conversion));
-	}
-	
-	public void dateTimeFill(String check, JComboBox box1, JComboBox box2, JComboBox box3) {
-		
-		int dayMax = 31;
-		int monthMax = 12;
-		int yearStart = 13;
-		int yearMax = 15;
-		int hourMax = 12;
-		int minuteSecondMax = 60;
-		
-		
-		List<String> dates = Arrays.asList("Dates");
-		List<String> times = Arrays.asList("TOC", "ORD", "MOB", "IA", "MAV", "CD");
-		
-		if(dates.contains(check)) {
-			
-			for (int i = 1, x = 1,  y = yearStart; i <= dayMax; i++) {
-				
-				box1.addItem(new Integer(i));
-				
-				if( x  != monthMax + 1) {
-					
-					box2.addItem(new Integer(x));
-					x ++;
-				}
-				else if( y != yearMax + 1) {
-					
-					box3.addItem(new Integer(y));
-					y++;
-				}
-			}
-		}
-		else if (times.contains(check)) {
-			
-			for (int i = 0, x = 0,  y = 0; i <= minuteSecondMax; i++) {
-				
-				box2.addItem(new Integer(i));
-				box3.addItem(new Integer(i));
-				
-				if( y != hourMax + 1) {
-					
-					box1.addItem(new Integer(y));
-					y++;
-				}
-			}
-		}
-	}
-	
-	public void daySetterMonth(JComboBox box1, JComboBox box2 ) {
-		
-		int check = (int) box2.getSelectedItem();
-	
-		int dayMax1 = 31;
-		int dayMax2 = 30;
-		int dayMax3 = 28;
-		
-		System.out.println(box1.getItemCount());
-		
-		if (check == 0 || check == 1 || check == 3 ||  check == 5 || check == 7 || check == 8 || check == 10 || check == 12) {
-			
-			box1.removeAllItems();
-			
-			if (box1.getItemCount() <= dayMax1) {
-			
-				for (int i = 1; i <= dayMax1; i++) {
-					
-					box1.addItem(new Integer(i));
-				}
-			}
-		}
-		else if (check == 4 || check == 6 ||  check == 9 || check == 11) {
-			
-			box1.removeAllItems();
-			
-			if (box1.getItemCount() <= dayMax2) {
-				
-				for (int i = 1; i <= dayMax2; i++) {
-					
-					box1.addItem(new Integer(i));
-				}
-			}
-		}
-		else if (check == 2) {
-			
-			box1.removeAllItems();
-			
-			if(box1.getItemCount() <= dayMax3) {
-			
-				for (int i = 1; i <= dayMax3; i++) {
-					
-					box1.addItem(new Integer(i));
-				}
-			}
-		}
 	}
 }
 
