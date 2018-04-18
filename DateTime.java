@@ -68,7 +68,6 @@ public class DateTime {
 	     
 	public void daySetterMonth(JComboBox box1, JComboBox box2 ) {
 		
-		System.out.println("box2 " + box2.getItemCount());
 		int check;
 		
 		if(box2.getSelectedItem() != null) {
@@ -116,7 +115,53 @@ public class DateTime {
 				}
 			}
 		}
-	
-	
 	}
+	
+	public String monthConverter(String val) {
+		
+		String wordMonth = "";
+		
+		switch (val) {
+			
+			case "1": 
+				wordMonth = "JAN";
+				break;
+			case "2": 
+				wordMonth = "FEB";
+				break;
+			case "3": 
+				wordMonth = "MAR";
+				break;
+			case "4": 
+				wordMonth = "APR";
+				break;
+			case "5": 
+				wordMonth = "MAY";
+				break;
+			case "6": 
+				wordMonth = "JUNE";
+				break;
+			case "7": 
+				wordMonth = "JULY";
+				break;
+			case "8": 
+				wordMonth = "AUG";
+				break;
+			case "9": 
+				wordMonth = "SEPT";
+				break;
+			case "10": 
+				wordMonth = "OCT";
+				break;
+			case "11": 
+				wordMonth = "NOV";
+				break;
+			case "12": 
+				wordMonth = "DEC";
+				break;
+		}
+		
+		return wordMonth;
+	}
+	
 }
