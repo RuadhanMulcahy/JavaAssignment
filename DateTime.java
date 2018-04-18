@@ -2,15 +2,25 @@ package assignment1;
 
 import java.util.Arrays;
 import java.util.List;
-
 import javax.swing.JComboBox;
 
+/**
+ * 
+ * @author Ruadhan
+ *
+ */
+
 public class DateTime {
+	
+	/**This class contains all methods relating to dates and times
+	 * 
+	 */
 	
 	public DateTime() {
 		
 	}
 	
+	//This method fills the JComboBoxes with times or dates depending on what check is equal to.
 	public void dateTimeFill(String check, JComboBox box1, JComboBox box2, JComboBox box3) {
 		
 		int dayMax = 31;
@@ -24,8 +34,10 @@ public class DateTime {
 		List<String> dates = Arrays.asList("Dates");
 		List<String> times = Arrays.asList("TOC", "ORD", "MOB", "IA", "MAV", "CD");
 		
+		//Sets for Date
 		if(dates.contains(check)) {
 			
+			//clears any previous content from the JComboBoxes
 			box1.removeAllItems();
 			box2.removeAllItems();
 			box3.removeAllItems();
@@ -46,8 +58,10 @@ public class DateTime {
 				}
 			}
 		}
+		//Sets for Time
 		else if (times.contains(check)) {
 			
+			//clears any previous content from the JComboBoxes
 			box1.removeAllItems();
 			box2.removeAllItems();
 			box3.removeAllItems();
@@ -65,7 +79,8 @@ public class DateTime {
 			}
 		}
 	}
-	     
+	
+	//This method changes the day JComboBox depending on what moth is selected
 	public void daySetterMonth(JComboBox box1, JComboBox box2 ) {
 		
 		int check;
@@ -83,7 +98,8 @@ public class DateTime {
 				box1.removeAllItems();
 				
 				if (box1.getItemCount() <= dayMax1) {
-				
+					
+					//JComboBoxes are filled using loops
 					for (int i = 1; i <= dayMax1; i++) {
 						
 						box1.addItem(new Integer(i));
@@ -96,6 +112,7 @@ public class DateTime {
 				
 				if (box1.getItemCount() <= dayMax2) {
 					
+					//JComboBoxes are filled using loops
 					for (int i = 1; i <= dayMax2; i++) {
 						
 						box1.addItem(new Integer(i));
@@ -106,6 +123,7 @@ public class DateTime {
 				
 				box1.removeAllItems();
 				
+				//JComboBoxes are filled using loops
 				if(box1.getItemCount() <= dayMax3) {
 				
 					for (int i = 1; i <= dayMax3; i++) {
@@ -117,6 +135,7 @@ public class DateTime {
 		}
 	}
 	
+	//This method converts number month format to worded format so sql queries can be searched
 	public String monthConverter(String val) {
 		
 		String wordMonth = "";
@@ -161,6 +180,7 @@ public class DateTime {
 				break;
 		}
 		
+		//returns month in word form
 		return wordMonth;
 	}
 	

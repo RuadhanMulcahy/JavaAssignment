@@ -1,10 +1,16 @@
 package assignment1;
 
 import java.awt.*;
-
 import javax.swing.*;
-
 import org.jfree.ui.RefineryUtilities;
+
+/**
+ * 
+ * @author Ruadhan
+ *
+ */
+
+//Display sets the layout for the GUI
 
 public class Display {
 	
@@ -17,6 +23,7 @@ public class Display {
 		SidePanel panel = new SidePanel(container, window);
 		ToolBar ToolBar = new ToolBar();;
 		
+		//sets a new grid layout
 		container.setLayout(new GridLayout(1,1));
 		
 		window.add(panel.sideMenu(), BorderLayout.WEST);
