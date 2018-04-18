@@ -11,6 +11,8 @@ import java.util.List;
 
 import javax.swing.*;
 
+import org.jfree.ui.RefineryUtilities;
+
 public class SidePanel  implements ActionListener {
 	
 	String[] options = {"", "1", "2", "3", "4", "5"};
@@ -46,6 +48,7 @@ public class SidePanel  implements ActionListener {
 	
 	JButton button1 = new JButton("View");
 	JButton button2 = new JButton("Add");
+	JButton button3 = new JButton("New");
 	
 	JPanel container = new JPanel();
 	JFrame window = new JFrame();
@@ -87,6 +90,8 @@ public class SidePanel  implements ActionListener {
 		JPanel container2 = new JPanel(); 
 		JPanel container3 = new JPanel();
 		JPanel container4 = new JPanel();
+		
+		button1.setPreferredSize(new Dimension(50, 20));
 		
 		sidePanel.setPreferredSize(new Dimension(150,200));
 		sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
@@ -277,8 +282,6 @@ public class SidePanel  implements ActionListener {
 				int convert = (int) dateTimeTTDD2.getSelectedItem();
 				
 				val7 = Integer.toString(convert);
-				
-				System.out.println("val7" +val7);
 			}
 		}
 		else if(actions.getSource() == dateTimeTTMON2) {
@@ -300,8 +303,6 @@ public class SidePanel  implements ActionListener {
 		}
 		else if(actions.getSource() == dateTimeTTYY2) {
 			
-			System.out.println("123" + dateTimeTTYY2.getSelectedItem());
-			
 			if (dateTimeTTYY2.getSelectedItem() != null) {
 				
 				int convert = (int) dateTimeTTYY2.getSelectedItem();
@@ -321,27 +322,37 @@ public class SidePanel  implements ActionListener {
 					selection = "Pie Chart";
 					break;
 				case "Graph":
-					System.out.println("Graph");
+					
+					selection = "Bar Chart";
 					break; 
 			}
 		}
 		else if(actions.getSource() == button2) {
 			
-			this.dataTransmitter(val1, val2, val3, val4, val5, val6, val7, val8, val9);
+			String check = (String) dropDown3.getSelectedItem();
+			
+			this.dataTransmitter(check, val1, val2, val3, val4, val5, val6, val7, val8, val9);
 		}
 		else if(actions.getSource() == button1) {
 			
+			String title = (String) dropDown1.getSelectedItem();
+			
 			if(selection == "Pie Chart") {
 				
-				Graph demo = new Graph(countTitle, countResult, "chart" );  
+				Graph demo = new Graph(countTitle, countResult, title );  
 			    demo.setSize(400, 300 );  
 			    container.add(demo.createDemoPanel());
 			    window.repaint();
 			    window.setVisible(true);
 			}
-			else
+			else if(selection == "Bar Chart")
 			{
-				System.out.println("Histogram");
+				Graph chart = new Graph(countTitle, countResult, title); 
+			    
+			    chart.setSize(400, 300 );  
+			    container.add(chart.creatBarChart());
+			    window.repaint();
+			    window.setVisible(true);
 			}
 		}
 	}
@@ -358,21 +369,13 @@ public class SidePanel  implements ActionListener {
 		box.setModel(new DefaultComboBoxModel(conversion));
 	}
 	
-	public void dataTransmitter(String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9) {
+	public void dataTransmitter(String check, String val1, String val2, String val3, String val4, String val5, String val6, String val7, String val8, String val9) {
 		
 		DataHandler data = new DataHandler();
 		
-		countResult.add(data.mainDriver(val1, val2, val3, val4, val5, val6, val7, val8, val9));
+		countResult.add(data.mainDriver(check, val1, val2, val3, val4, val5, val6, val7, val8, val9));
 		countTitle.add(val2);
 	}
 }
-
-/**String val1 = "Description";
-String val2 = "Fire CAR";
-String val3 = "DATES";
-String val4 = "01-JAN-13";
-String val5 = "13-JAN-13";
-
-DataHandler data = new DataHandler(val1, val2, val3, val4, val5);*/
 
 
